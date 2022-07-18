@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import films from "../../../data/films";
+import FilmCard from "../film-card";
 import "./films-list.css";
 
 function FilmsList() {
+  const [filmsList, setFilmsList] = useState(films);
+
+  const removeFilmHandler = (id) => {
+    setFilmsList(filmsList.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="films">
-      {films.map((film) => (
-        <div>
-          <img src={film.image} alt="" />
-          <h3>{film.name}</h3>
-          <div>Year: {film.year}</div>
-        </div>
+      {filmsList.map((item) => (
+        <FilmCard
+          film={item}
+          key={item.id}
+          removeFilmHandler={removeFilmHandler}
+        />
       ))}
     </div>
   );
