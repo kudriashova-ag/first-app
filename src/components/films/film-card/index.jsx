@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import FilmInfo from "../film-info";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import "./card.css";
 
 function FilmCard({ film, removeFilmHandler }) {
@@ -11,7 +13,7 @@ function FilmCard({ film, removeFilmHandler }) {
   };
 
   return (
-    <div className="film">
+    <div className="film" id={film.id}>
       <img src={film.image} alt={film.name} />
       <h3>{film.name}</h3>
       <div>Year: {film.year}</div>
@@ -22,8 +24,13 @@ function FilmCard({ film, removeFilmHandler }) {
       >
         Show alert
       </button>
-      <button onClick={buttonHandler}>Show info</button>
-      <button className="danger" onClick={()=>removeFilmHandler(film.id)}>
+
+      <button onClick={buttonHandler}>
+        Show info{" "}
+        {showInfo ? <KeyboardArrowDownIcon /> : <KeyboardArrowUpIcon />}
+      </button>
+
+      <button className="danger" onClick={() => removeFilmHandler(film.id)}>
         Delete
       </button>
 

@@ -6,7 +6,6 @@ function App() {
 
   return (
     <>
-      <h1 className="header">Hello</h1>
       <FilmsList />
     </>
   );
